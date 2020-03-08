@@ -1,0 +1,1 @@
+export SECRET_KEY="change_this_to_something_secure"
