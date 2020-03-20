@@ -33,7 +33,7 @@ An exemplary django project with some example NixOS/NixOps configs can be found 
   db-name ? name,  # database name
   user ? "django",  # system user for django
   port ? 80,  # port to bind the http server
-  allowed-hosts ? "*",  # comma separated lists of allowed hosts
+  allowed-hosts ? "*",  # string of comma separated hosts
   ...
 }:
 ```

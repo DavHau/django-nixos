@@ -1,17 +1,22 @@
 { config, pkgs, ... }:
 with pkgs;
-import ../../default.nix rec {
+let django = (import (builtins.fetchGit {
+      url = "https://github.com/DavHau/django-nixos";
+      ref = "master";
+      ### uncomment next line and enter newest commit of https://github.com/DavHau/django-nixos
+      # rev = "commit_hash";
+    })) {
   inherit pkgs;
   name = "djangoproject";
   keys-file = toString ../django-keys;
   settings = "djangoproject.settings_nix";
   src = "${../djangoproject}";
   port = 8000;
-} // {
+};
+in
+{
+  imports = [ django ];
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-  users.users.django = {
-    home = "/home/django";
-  };
   # nginx proxy
   services.nginx = {
     enable = true;
