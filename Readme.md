@@ -4,10 +4,10 @@ This Project aims to provide a production grade NixOS configuration for Django p
 An exemplary django project with some example NixOS/NixOps configs can be found under `./examples`
 
 ## What you will get
- - A PostgreSQL Database with access configuration for django
+ - A PostgreSQL DB with access configured for django
  - A systemd service which serves the project via gunicorn
  - A defined way of passing secrets to Django without leaking them into /nix/store
- - Your static files as a separated build artifact (serve it however you want)
+ - Your static files as a separated build artifact (by default served via whitenoise)
  - Ability to configure some common options like (allowed-hosts, port, processes, threads) through your nix config.
  - Having your `manage.py` globally callable via `manage-projectname` (only via root/sudo)
 
@@ -82,7 +82,7 @@ To pass secrets to django securely:
     This file will not be managed by nix.
     If you are deploying to a remote host, make sure this file is available. An example on how to do this with NixOps can be found under `./examples/nixops`
 
-A runtime systemd service running as root will later pick up that file and copy it to a place under `/run/` where only the django system user can read it.
+A systemd service running as root will later pick up that file and copy it to a destination under `/run/` where only the django system user can read it. Make sure by yourself to protect the source file with proper permissions or use the provided NixOps example to upload it securely to the remote host.
 
 ## Examples
 See `Readme.md` inside `./examples`
