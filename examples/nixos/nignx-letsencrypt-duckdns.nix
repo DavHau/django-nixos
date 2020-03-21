@@ -30,6 +30,8 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/".proxyPass = "http://localhost:" + toString(8000) + "/";
+      # taking advantage of whitenoise's compression
+      locations."/".extraConfig = ''proxy_set_header Accept-Encoding "br, gzip";'';
     };
   };
   services.ddclient = {

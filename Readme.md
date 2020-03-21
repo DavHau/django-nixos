@@ -65,6 +65,7 @@ Django settings must be configured to:
 To serve static files out of the box, include the whitenoise middleware:
 ```python
 MIDDLEWARE += [ 'whitenoise.middleware.WhiteNoiseMiddleware' ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
 
 (See `./examples/djangoproject/djangoproject/settings_nix.py` for full example)

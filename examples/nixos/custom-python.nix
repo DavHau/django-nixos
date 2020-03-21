@@ -14,6 +14,7 @@ let django = (import (builtins.fetchGit {
   python = pkgs.python37.withPackages ( ps: with ps; [
     django_2_2
     whitenoise
+    brotli
     gunicorn
     psycopg2
     requests  # as an example we add requests

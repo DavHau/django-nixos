@@ -27,3 +27,4 @@ DATABASES = {
 # Django itself cannot serve static files if DEBUG=False.
 # A simple fix is to just add the whitenoise middleware.
 MIDDLEWARE += [ 'whitenoise.middleware.WhiteNoiseMiddleware' ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
