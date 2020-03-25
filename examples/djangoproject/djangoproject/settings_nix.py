@@ -27,4 +27,4 @@ DATABASES = {
 # We're using a python module to server static files. Scared of it?
 # Read here: http://whitenoise.evans.io/en/stable/index.html#infrequently-asked-questions
 MIDDLEWARE += [ 'whitenoise.middleware.WhiteNoiseMiddleware' ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'

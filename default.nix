@@ -22,16 +22,27 @@
 }:
 with pkgs;
 let
-  manage-script = ''
-    #!/usr/bin/env sh
-    sudo -u ${user} sh -c "source /run/${user}/django-keys && DJANGO_SETTINGS_MODULE=${settings} ${python}/bin/python ${manage-py} $@"
+  manage-script-content = ''
+    export STATIC_ROOT=${static-files}
+    export DJANGO_SETTINGS_MODULE=${settings}
+    export ALLOWED_HOSTS=${allowed-hosts}
+    export DB_NAME=${db-name}
+    source /run/${user}/django-keys
+    ${python}/bin/python ${manage-py} $@
   '';
+  manage-script = 
+    runCommand 
+      "manage-${name}-script"
+      { propagatedBuildInputs = [ src python ]; }
+      ''echo -e '${manage-script-content}' > $out
+        chmod +x $out
+      '';
   manage = 
     runCommand 
       "manage-${name}"
-      { propagatedBuildInputs = [ src python ]; }
+      {}
       ''mkdir -p $out/bin
-        echo -e '${manage-script}' > $out/bin/manage-${name}
+        echo -e 'sudo -u ${user} bash ${manage-script} $@' > $out/bin/manage-${name}
         chmod +x $out/bin/manage-${name}
       '';
 in
