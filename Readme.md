@@ -65,7 +65,7 @@ Django settings must be configured to:
 To serve static files out of the box, include the whitenoise middleware:
 ```python
 MIDDLEWARE += [ 'whitenoise.middleware.WhiteNoiseMiddleware' ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 ```
 
 (See `./examples/djangoproject/djangoproject/settings_nix.py` for full example)
@@ -73,16 +73,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ## Secrets / Keys
 To pass secrets to django securely:
-1. Create a file containing your secrets as environment varibles like this:
+1. Create a file containing your secrets as environment variables like this:
     ```
     export SECRET_KEY="foo"
     export ANOTHER_SECRET_FOR_DJANGO="bar"
     ```
-2. Pass the path of the secrets file via parameter `keys-file`  
+2. Pass the path of the file via parameter `keys-file`  
     This file will not be managed by nix.
     If you are deploying to a remote host, make sure this file is available. An example on how to do this with NixOps can be found under `./examples/nixops`
 
-A systemd service running as root will later pick up that file and copy it to a destination under `/run/` where only the django system user can read it. Make sure by yourself to protect the source file with proper permissions or use the provided NixOps example to upload it securely to the remote host.
+A systemd service running as root will later pick up that file and copy it to a destination under `/run/` where only the django system user can read it. Make sure by yourself to protect the source file you uploaded to the remote host with proper permissions or use the provided NixOps example.
 
 ## Examples
 See `Readme.md` inside `./examples`

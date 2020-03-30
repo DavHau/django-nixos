@@ -17,7 +17,7 @@ let
   };
 in
 {
-  imports = [ django ];
+  imports = [ django.system-config ];
   # We upload the keys-file via NixOps' keys feature
   deployment.keys = {
     django-keys = {

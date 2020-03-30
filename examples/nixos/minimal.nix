@@ -14,6 +14,6 @@ let django = (import (builtins.fetchGit {
 };
 in
 {
-  imports = [ django ];
+  imports = [ django.system-config ];
   networking.firewall.allowedTCPPorts = [ 80 ];
 }
