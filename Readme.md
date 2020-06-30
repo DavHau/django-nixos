@@ -1,4 +1,4 @@
-# Django NixOS config
+# NixOS-based Django deployment
 This Project aims to provide a production grade NixOS configuration for Django projects. By taking your source code and some parameters as input it will return a nixos configuration which serves your Django project.
 
 An exemplary django project with some example NixOS/NixOps configs can be found under `./examples`
