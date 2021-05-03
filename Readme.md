@@ -1,4 +1,6 @@
 # NixOS-based Django deployment
+!! WARNING !! This project has not been updated for a while. You can still use this as a template, but make sure to update the nixpkgs version in `nixpkgs-src.nix`
+
 This Project aims to provide a production grade NixOS configuration for Django projects. By taking your source code and some parameters as input it will return a nixos configuration which serves your Django project.
 
 An exemplary django project with some example NixOS/NixOps configs can be found under `./examples`
